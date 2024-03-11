@@ -7,48 +7,16 @@
 export function Home() {
   return (
     <div className="relative">
-      <div className="fixed top-0 left-0 right-0 z-10 bg-white/50 backdrop-blur-md">
-        <div className="container mx-auto flex items-center justify-between px-4 py-2">
-          <div>
-            <img alt="Intelli Concierge" className="h-16" src="/Logo.svg" />
-          </div>
-          <nav className="flex space-x-4">
-            <a className="bold text-gray-600 hover:text-gray-900" href="#">
-              Products
-            </a>
-            <a className="text-gray-600 hover:text-gray-900" href="/pricingPage">
-              Pricing
-            </a>
-            <a className="text-gray-600 hover:text-gray-900" href="resourcesPage">
-              Resources
-            </a>
-            <a className="text-gray-600 hover:text-gray-900" href="#">
-              Company
-            </a>
-          </nav>
-          <div className="flex space-x-2">
-            <a
-              className="px-4 py-2 text-sm font-medium text-gray-600 bg-white rounded-md shadow-sm hover:bg-gray-100"
-              href="/auth/login"
-            >
-              Log In
-            </a>
-            <a
-              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md shadow-sm hover:bg-blue-700"
-              href="/auth/register"
-            >
-              Get Started
-            </a>
-          </div>
-        </div>
-      </div>
-      <main className="pt-16">
-        <section className="container mx-auto mt-8 px-4">
-          <h1 className="text-5xl font-bold text-center text-blue-600">Intelli Concierge</h1>
-          <p className="mt-4 text-xl text-center text-gray-600">Speed up customer inquiry responses by 83%.</p>
-          <p className="mt-2 text-center text-gray-500">
-            Enhance your customer support effortlessly and affordably. Manage and respond to over 150 queries with
-            finesse.
+      <Navbar />
+      <main className="pt-16" 
+      >
+      
+        <section className="container mx-auto mt-8 px-4">        
+          <h1 className="text-3xl font-thin text-center text-grey-400">Intelli Concierge</h1>
+          <p className="mt-4 text-center text-6xl font-bold text-blue-600 mb-8 bg-clip-text bg-gradient-to-r from-blue-500 to-teal-400">Automate customer support responses.</p>
+          <p className="text-center text-lg font-bold font-medium text-gray-800">
+            Improve customer experience by automating responses to frequently asked questions. Handle responses across 3 different channels seamlessly with
+            one platform. All this power is available at an affordable price.
           </p>
           <div className="mt-6 flex justify-center space-x-4">
             <a
