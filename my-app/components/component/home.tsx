@@ -71,7 +71,7 @@ export function Home() {
                 aspectRatio: "150/50",
                 objectFit: "cover",
               }}
-              width="150"
+              width="60"
             />
             <Image
               alt="La Palm Royal Beach Hotel"
@@ -79,10 +79,10 @@ export function Home() {
               height="50"
               src="/logo-head.png"
               style={{
-                aspectRatio: "150/50",
+                aspectRatio: "100/100",
                 objectFit: "cover",
               }}
-              width="150"
+              width="60"
             />
             <Image
               alt="Labadi Beach Hotel"
