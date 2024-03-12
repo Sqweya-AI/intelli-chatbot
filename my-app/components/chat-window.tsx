@@ -31,8 +31,8 @@ export function ChatWindow() {
           <VolumeIcon className="text-white" />
         </div>
         <div className="flex flex-col items-start justify-between flex-1 p-4">
-        <p className="font-bold text-gray-600 ">
-                Elli typically replies in under 5 minutes
+        <p className="font-sm text-gray-600 ">
+                Elli is an AI assistant that can help with general inquiries. Contact front desk if you need to make a reservation.
         </p>
           <div className="w-full">
             <div className="mb-4 text-sm">
@@ -65,7 +65,7 @@ export function ChatWindow() {
               </Avatar>
             )}
             <div
-              className={`max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-blue-600 text-gray p-3 rounded-lg ${
+              className={`max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-[E5EEFF] text-gray p-3 rounded-lg ${
                 m.role === 'user' ? 'bg-gray-100' : 'bg-[#E5EEFF]'
               }`}
             >
@@ -74,12 +74,7 @@ export function ChatWindow() {
           </div>
         ))}
           <div className="w-full mt-4 ">
-            <Button
-              className="w-full text-white mb-2 bg-emerald-500 border border-gray-900 shadow-sm"
-              variant="default"
-            >
-              General Inquiries
-            </Button>
+            
             <Button className="w-full shadow-sm" variant="outline">
               Make a Reservation
             </Button>
