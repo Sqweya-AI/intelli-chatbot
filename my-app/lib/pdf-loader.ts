@@ -10,8 +10,8 @@ export async function getChunkedDocsFromPDF() {
 
     // From the docs https://www.pinecone.io/learn/chunking-strategies/
     const textSplitter = new RecursiveCharacterTextSplitter({
-      chunkSize: 1000,
-      chunkOverlap: 200,
+      chunkSize: 500,
+      chunkOverlap: 100,
     });
 
     const chunkedDocs = await textSplitter.splitDocuments(docs);
@@ -22,3 +22,4 @@ export async function getChunkedDocsFromPDF() {
     throw new Error("PDF docs chunking failed !");
   }
 }
+
