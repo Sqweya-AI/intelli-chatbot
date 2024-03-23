@@ -3,14 +3,6 @@ import { Progress } from "@/components/ui/progress";
 import Image from "next/image"
 
 export function Loader() {
-  const [progress, setProgress] = useState(0);
-  const loadingTime = 3000; // Replace 3000 with the actual loading time
-
-  useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center bg-white">
       {progress < 100 ? (
@@ -36,5 +28,5 @@ export function Loader() {
         <div>Authentication completed.</div>
       )}
     </div>
-  );
+  )
 }

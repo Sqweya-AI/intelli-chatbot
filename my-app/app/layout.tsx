@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import { Toaster } from 'sonner';
 import { Analytics } from "@vercel/analytics/react"
 
-const inter = Manrope({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Intelli Concierge",
@@ -21,23 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <Analytics />
-      <body className={inter.className}>{children}
-
-      <Toaster
-      toastOptions={{
-        unstyled: true,
-        classNames: {
-          error: 'bg-red-400',
-          success: 'text-green-400',
-          warning: 'text-yellow-400',
-          info: 'bg-blue-400',
-        },
-      }}
-
-      richColors
-    />
-  
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
