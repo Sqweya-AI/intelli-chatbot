@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { callChain } from "@/lib/langchain";
-import { Message } from "ai";
+import { Message, OpenAIStream, StreamingTextResponse } from "ai";
+
 
 const formatMessage = (message: Message) => {
-  return `${message.role === "user" ? "Human" : "Assistant"}: ${
-    message.content
-  }`;
+  return `${message.role === "user" ? "Human" : "Assistant"}: ${message.content}`;
 };
 
 export async function POST(req: NextRequest) {
@@ -24,11 +23,13 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const streamingTextResponse = callChain({
+    // Call the callChain function to get the streaming text response
+    const streamingTextResponse = await callChain({
       question,
       chatHistory: formattedPreviousMessages.join("\n"),
     });
 
+    // Return the streaming text response directly to the client
     return streamingTextResponse;
   } catch (error) {
     console.error("Internal server error ", error);
@@ -37,6 +38,7 @@ export async function POST(req: NextRequest) {
     });
   }
 }
+
 
 // import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
 // import { OpenAIStream, StreamingTextResponse } from 'ai';

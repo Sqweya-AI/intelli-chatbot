@@ -1,59 +1,55 @@
-import { PineconeClient } from "@pinecone-database/pinecone";
+import { Pinecone } from "@pinecone-database/pinecone";
 import { env } from "./config";
 import { delay } from "./utils";
 
-let pineconeClientInstance: PineconeClient | null = null;
-
-// Create pineconeIndex if it doesn't exist
-async function createIndex(client: PineconeClient, indexName: string) {
-  try {
-    await client.createIndex({
-      createRequest: {
-        name: indexName,
-        dimension: 1536,
-        metric: "cosine",
-      },
-    });
-    console.log(
-      `Waiting for ${env.INDEX_INIT_TIMEOUT} seconds for index initialization to complete...`
-    );
-    await delay(env.INDEX_INIT_TIMEOUT);
-    console.log("Index created !!");
-  } catch (error) {
-    console.error("error ", error);
-    throw new Error("Index creation failed");
-  }
-}
+let pineconeInstance: Pinecone | null = null;
 
 // Initialize index and ready to be accessed.
-async function initPineconeClient() {
+async function initPinecone(
+) {
   try {
-    const pineconeClient = new PineconeClient();
-    await pineconeClient.init({
+    const pinecone = new Pinecone({
       apiKey: env.PINECONE_API_KEY,
       environment: env.PINECONE_ENVIRONMENT,
     });
+
     const indexName = env.PINECONE_INDEX_NAME;
+    const existingIndexes = await pinecone.listIndexes();
 
-    const existingIndexes = await pineconeClient.listIndexes();
-
-    if (!existingIndexes.includes(indexName)) {
-      createIndex(pineconeClient, indexName);
-    } else {
+    if (existingIndexes.some((index) => index.name === indexName)) {
       console.log("Your index already exists. nice !!");
+    } else {
+      // Create index if it doesn't exist
+try {
+        const indexDescription = {
+          name: indexName,
+          dimension: 1024,
+          metric: "cosine",
+        };
+
+        await pinecone.createIndex(indexDescription);
+        console.log(
+          `Waiting for ${env.INDEX_INIT_TIMEOUT} seconds for index initialization to complete...`
+);
+        await delay(env.INDEX_INIT_TIMEOUT);
+        console.log("Index created !!");
+      } catch (error) {
+        console.error("error ", error);
+        throw new Error("Index creation failed");
+      }
     }
 
-    return pineconeClient;
+    return pinecone;
   } catch (error) {
     console.error("error", error);
-    throw new Error("Failed to initialize Pinecone Client");
+    throw new Error("Failed to initialize Pinecone ");
   }
 }
 
-export async function getPineconeClient() {
-  if (!pineconeClientInstance) {
-    pineconeClientInstance = await initPineconeClient();
+export async function getPinecone(
+) {
+  if (!pineconeInstance) {
+    pineconeInstance = await initPinecone();
   }
-
-  return pineconeClientInstance;
+  return pineconeInstance;
 }
