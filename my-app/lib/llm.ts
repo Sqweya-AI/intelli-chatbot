@@ -1,6 +1,6 @@
 import { AzureChatOpenAI} from "@langchain/azure-openai";
 
-
+//running 2 instance of an LLM (streaming an non-streaming)
 export const streamingModel = new AzureChatOpenAI({
   azureOpenAIEndpoint:'https://sqweya-llm.openai.azure.com/',
   modelName: "gpt-35-turbo", // Use gpt-35-turbo for Azure OpenAI GPT-3.5-turbo
