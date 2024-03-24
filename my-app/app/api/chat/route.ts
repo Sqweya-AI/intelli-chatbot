@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     });
 
     // Return the streaming text response directly to the client
-    return streamingTextResponse;
+    return streamingTextResponse; //yet to implement stream to client
   } catch (error) {
     console.error("Internal server error ", error);
     return NextResponse.json("Error: Something went wrong. Try again!", {
