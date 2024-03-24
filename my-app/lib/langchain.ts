@@ -106,6 +106,7 @@ type callChainArgs = {
   question: string;
   chatHistory: string;
 };
+export { StreamingTextResponse };
 
 export async function callChain({ question, chatHistory }: callChainArgs) {
   try {
