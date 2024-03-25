@@ -21,12 +21,12 @@ import { Badge } from "@/components/ui/badge";
 
 import Image from "next/image";
 import demoImage from "@/public/Demo.svg";
-import mendiata from "@/public/mendiata.png";
-import labadi from "@/public/Labadi-logo.png";
-import aquasafari from "@/public/Aqua-Safari-Logo.png";
-import kempinski from "@/public/Kempiski.png";
-import accraCity from "@/public/accracity-logo.png";
-import movenpick from "@/public/movenpick.png";
+import mendiata from "@/public/mendiata.jpeg";
+import labadi from "@/public/Labadi-logo.jpeg";
+import aquasafari from "@/public/Aqua-Safari-Logo.jpeg";
+import kempinski from "@/public/Kempiski.jpeg";
+import accraCity from "@/public/accracity-logo.jpeg";
+import movenpick from "@/public/movenpick.jpeg";
 import pinkImage from "@/public/pink.png";
 import yellowImage from "@/public/yello.png";
 import Pie from "@/public/piechart.png";
