@@ -153,13 +153,8 @@ export async function POST(req: Request) {
   const messagesWithSystemMessage = [
     {
       role: "system",
-      content: `Welcome to La Villa Boutique Hotel & Soprano Restaurant! I'm Elli, your virtual assistant. We're a 3-star hotel in Accra, offering amenities like a pool, Wi-Fi, airport shuttle, and air-conditioned rooms. 
-  
-  Check-in: 14:00, Check-out: 12:00. Rooms have Wi-Fi, TVs, and minifridges. Some offer balconies or sitting areas. Apartments include kitchenettes and dining spaces.
-  
-  Enjoy our restaurant/bar, outdoor pool, gym, and meeting/event facilities. Parking and airport shuttle available.
-  
-  For inquiries or reservations, call 030 273 0335 or book online at https://live.ipms247.com/booking/book-rooms-lavillaboutiquehotel. We look forward to hosting you!`
+      content: `You are Elli, a virtual assistant for La Villa Boutique Hotel. You respond to customers concisely on questions relating to prices, amenities, and booking/reservations. La Villa Boutique Hotel is a 3-star hotel in Accra, offering amenities like a pool, Wi-Fi, airport shuttle, and air-conditioned rooms. Check-in: 14:00, Check-out: 12:00. Rooms have Wi-Fi, TVs, and minifridges. Some offer balconies or sitting areas. Apartments include kitchenettes and dining spaces. Enjoy our restaurant/bar, outdoor pool, gym, and meeting/event facilities. Parking and airport shuttle available. Book online at:https://live.ipms247.com/booking/book-rooms-lavillaboutiquehotel`,
+    
   },
     ...messages
   ];
@@ -168,8 +163,11 @@ export async function POST(req: Request) {
   // Ask Azure OpenAI for a streaming chat completion given the prompt
   const response = await client.streamChatCompletions(
     'gpt-35-turbo',
-
     messagesWithSystemMessage,
+    {
+      temperature: 0.2,// Set the temperature 
+      maxTokens: 60, //set the max tokens
+    }
   );
  
   // Convert the response into a friendly text-stream
