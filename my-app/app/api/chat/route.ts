@@ -2,14 +2,82 @@ import { OpenAIClient, AzureKeyCredential } from '@azure/openai';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 // import mongoose, {Model, connect} from 'mongoose';
 // import { MessageModel as MessageSchema } from '@/models/message.model';
+// import mongoose, {Model, connect} from 'mongoose';
+// import { MessageModel as MessageSchema } from '@/models/message.model';
 
 export const runtime = 'edge';
 
 // Create an OpenAI API client (that's edge friendly!)
 const client = new OpenAIClient(
   'https://sqweya-subdomain.openai.azure.com/',
+  
   new AzureKeyCredential(process.env.AZURE_OPENAI_API_KEY!),
 );
+
+{/*
+
+const processMessages = async (messages: any[]) => {
+
+// Connect to the MongoDB database
+const mongodbUri = process.env.MONGODB_URI as string;
+
+mongoose.connect(mongodbUri, { useNewUrlParser: true, useUnifiedTopology: true } as any);
+const db = mongoose.connection.once('open', async () => {
+  const userMessagesPromises: Promise<MessageSchema[]>[] = [];
+
+  // Process each message in the messages array
+  for (const message of messages) {
+    // Check if the message is from the user, system, or the LLM
+    if (message.role === 'user' || message.role === 'system') {
+      // Create a new message document
+      userMessagesPromises.push(Model.create({
+        userId: message.userId,
+        message: message.content,
+        aiResponse: '', // No AI response for user or system messages
+      }));
+    } else if (message.role === 'assistant') {
+      // Create a new message document for the LLM response
+      const userMessage = await Model.create({
+        userId: message.userId,
+        message: message.content,
+        aiResponse: '', // No AI response for user or system messages
+      });
+      await userMessage.save();
+    }
+  }
+
+  // Create and save all user messages
+  await Promise.all(userMessagesPromises);
+    // Close MongoDB connection
+    await mongoose.disconnect();
+});
+};
+
+  // @ts-ignore
+const MessageModel = mongoose.model('Message', MessageSchema);
+
+ // Process each message in the messages array
+ for (const message of messages) {
+  // Check if the message is from the user, system, or the LLM
+  if (message.role === 'user' || message.role === 'system') {
+    // Create a new message document
+    const userMessage = await MessageModel.create({
+      userId: message.userId,
+      message: message.content,
+      aiResponse: '', // No AI response for user or system messages
+    });
+    await userMessage.save();
+  } else if (message.role === 'assistant') {
+    // Create a new message document for the LLM response
+    const userMessage = await MessageModel.create({
+      userId: message.userId,
+      message: message.content,
+      aiResponse: '', // No AI response for user or system messages
+    });
+    await userMessage.save();
+  }
+}
+*/}
 
 {/*
 
@@ -80,6 +148,7 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
   console.log(messages); 
 
+
   // Adding system message
   const messagesWithSystemMessage = [
     {
@@ -99,6 +168,7 @@ export async function POST(req: Request) {
   // Ask Azure OpenAI for a streaming chat completion given the prompt
   const response = await client.streamChatCompletions(
     'gpt-35-turbo',
+
     messagesWithSystemMessage,
   );
  

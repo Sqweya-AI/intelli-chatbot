@@ -50,9 +50,10 @@ export function ChatPreview() {
         title="Website Preview"
       ></iframe>
       {chatbotVisible && (
-        <div className="fixed bottom-0 right-0 z-10 p-4">
+        <div 
+        className="fixed bottom-10 right-0 z-10 p-4">
           {/* Your chatbot component */}
-          <div className="bg-white rounded-lg shadow-md p-4">
+          <div className="bg-white rounded-lg shadow-md p-4" >
             {/* Content of your chatbot */}
             <button onClick={toggleChatbot}>Open Elli</button>
           </div>
@@ -70,9 +71,11 @@ export function ChatPreview() {
       </div>
       </div>
       {!chatbotVisible && (
-        <div className="fixed bottom-0 right-0 z-20 p-4">
+        <div 
+        style={{ width: "380px", height: "600px" }}
+        className="fixed bottom-10 right-0 z-20 p-4">
           <ChatWindow />
-          <button onClick={toggleChatbot}>Close Elli</button>
+          
         </div>
       )}
     </div>
