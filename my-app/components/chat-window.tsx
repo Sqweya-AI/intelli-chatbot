@@ -63,16 +63,48 @@ export function ChatWindow() {
         </div>
       </div>
       <div className="flex flex-col items-start justify-between flex-1 p-2">
-        <ScrollArea className="h-[calc(50vh-100px)]">
-         
+        <ScrollArea className="h-[calc(70vh-100px)]">
+          <ScrollArea className="h-[calc(37vh-100px)]">
+            {/* Initial messages from Elli */}
+            <div className="flex items-start justify-end space-x-2 px-4 py-2">
+              <Avatar>
+                <AvatarImage alt="Elli" src="/Avatar.png?height=50&width=50" />
+                <AvatarFallback>E</AvatarFallback>
+              </Avatar>
+              <div className="max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-[E5EEFF] text-gray p-3 rounded-lg">
+                Hi👋, I'm Elli your front desk assistant.
+              </div>
+            </div>
+            <div className="flex items-start justify-end space-x-2 px-4 py-2">
+              <Avatar>
+                <AvatarImage alt="Elli" src="/Avatar.png?height=50&width=50" />
+                <AvatarFallback>E</AvatarFallback>
+              </Avatar>
+              <div className="max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-[E5EEFF] text-gray p-3 rounded-lg">
+                I'm here to answer questions & any assistance you might need.
+              </div>
+            </div>
+
+            {/* Existing messages */}
+            {messages.map((m) => (
+              <div
+                key={m.id}
+                className={`${m.role === "user"
+                    ? "flex items-end space-x-2"
+                    : "flex items-start justify-end space-x-2"
+                  } px-4 py-2 space-y-2`}
+              >
+                {/* ... */}
+              </div>
+            ))}
+          </ScrollArea>
           {messages.map((m) => (
             <div
               key={m.id}
-              className={`${
-                m.role === "user"
+              className={`${m.role === "user"
                   ? "flex items-end space-x-2"
                   : "flex items-start justify-end space-x-2"
-              } px-4 py-2 space-y-2`}
+                } px-4 py-2 space-y-2`}
             >
               {m.role === "user" ? (
                 <Avatar>
@@ -89,9 +121,8 @@ export function ChatWindow() {
                 </Avatar>
               )}
               <div
-                className={`max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-[E5EEFF] text-gray p-3 rounded-lg ${
-                  m.role === "user" ? "bg-gray-100" : "bg-[#E5EEFF]"
-                }`}
+                className={`max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-[E5EEFF] text-gray p-3 rounded-lg ${m.role === "user" ? "bg-gray-100" : "bg-[#E5EEFF]"
+                  }`}
               >
                 {m.content}
               </div>
@@ -113,7 +144,7 @@ export function ChatWindow() {
             <Button type="submit" className="rounded p-2 ml-1">
               <SendIcon className="w-6 h-6" />
             </Button>
-            
+
           </div>
         </div>
       </form>
@@ -121,7 +152,7 @@ export function ChatWindow() {
       <div className="flex items-center justify-between px-4 py-2 bg-gray-100 rounded-b-lg">
         <Tabs defaultValue="account" className="w-[400px]">
           <TabsList className="grid w-full grid-cols-2">
-            
+
             <TabsTrigger
               className="w-full bg-gray-900 text-white shadow-sm"
               onClick={openReservationModal}
