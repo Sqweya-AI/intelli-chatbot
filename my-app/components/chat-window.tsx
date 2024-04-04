@@ -6,6 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger
+} from '@/components/ui/tooltip';
+import { IconArrowElbow, IconPlus } from '@/components/ui/icons'
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -64,26 +70,32 @@ export function ChatWindow() {
       </div>
       <div className="flex flex-col items-start justify-between flex-1 p-2">
         <ScrollArea className="h-[calc(70vh-100px)]">
-          <ScrollArea className="h-[calc(37vh-100px)]">
+          <div>
             {/* Initial messages from Elli */}
-            <div className="flex items-start justify-end space-x-2 px-4 py-2">
-              <Avatar>
-                <AvatarImage alt="Elli" src="/Avatar.png?height=50&width=50" />
-                <AvatarFallback>E</AvatarFallback>
-              </Avatar>
-              <div className="max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-[E5EEFF] text-gray p-3 rounded-lg">
-                Hi👋, I'm Elli your front desk assistant.
-              </div>
-            </div>
-            <div className="flex items-start justify-end space-x-2 px-4 py-2">
-              <Avatar>
-                <AvatarImage alt="Elli" src="/Avatar.png?height=50&width=50" />
-                <AvatarFallback>E</AvatarFallback>
-              </Avatar>
-              <div className="max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-[E5EEFF] text-gray p-3 rounded-lg">
-                I'm here to answer questions & any assistance you might need.
-              </div>
-            </div>
+            <Card className="shadow-md border-none">
+              <CardContent>
+                <CardHeader>
+                  <CardTitle>Welcome to Elli</CardTitle>
+                  <CardDescription>
+                    Elli is an AI-powered assistant that can answer questions about our services, make reservations, and provide information about your hotel. Elli is available 24/7 to help you with your inquiries.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-center space-x-2">
+                    <Avatar>
+                      <AvatarImage
+                        alt="Elli"
+                        src="/Avatar.png?height=50&width=50"
+                      />
+                      <AvatarFallback>E</AvatarFallback>
+                    </Avatar>
+                    <div className="max-w-xs px-4 py-2 text-sm text-gray-700 rounded-lg bg-[E5EEFF] text-gray p-3 rounded-lg">
+                      Hi👋, I'm Elli your front desk assistant.
+                    </div>
+                  </div>
+              </CardContent>
+            </CardContent>
+            </Card>
 
             {/* Existing messages */}
             {messages.map((m) => (
@@ -97,7 +109,7 @@ export function ChatWindow() {
                 {/* ... */}
               </div>
             ))}
-          </ScrollArea>
+          </div>
           {messages.map((m) => (
             <div
               key={m.id}
