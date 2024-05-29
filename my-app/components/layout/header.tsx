@@ -1,9 +1,9 @@
-"use client";
 import ThemeToggle from "@/components/layout/ThemeToggle/theme-toggle";
 import { cn } from "@/lib/utils";
 import { MobileSidebar } from "./mobile-sidebar";
 import { UserNav } from "./user-nav";
 import Link from "next/link";
+<<<<<<< Updated upstream
 import { useAuth } from '@/firebase';
 
 
@@ -17,10 +17,30 @@ interface User {
 export default function Header() {
   const { user } = useAuth();
   const displayName = user ? user.displayName : 'Guest';
+=======
+import useAuth from "@/lib/auth/useAuth";
+import Image from "next/image";
+
+export default function Header() {
+  const { user } = useAuth();
+
+  const getGreeting = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour < 12) {
+      return "Good morning";
+    } else if (currentHour < 18) {
+      return "Good afternoon";
+    } else {
+      return "Good evening";
+    }
+  };
+
+>>>>>>> Stashed changes
   return (
     <div className="fixed top-0 left-0 right-0 supports-backdrop-blur:bg-background/60 border-b bg-background/95 backdrop-blur z-20">
 
       <nav className="h-14 flex items-center justify-between px-4">
+<<<<<<< Updated upstream
       <h1 className="text-xl font-semibold">{displayName}</h1>
         <div className="hidden lg:block">
           <Link
@@ -40,6 +60,19 @@ export default function Header() {
               <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
             </svg>
           </Link>
+=======
+        <Image
+          alt="Intelli Concierge"
+          className="h-16"
+          src="/Intelli.svg"
+          height={25}
+          width={25}
+        />
+        <div>
+          <h1 className="text-xl font-semibold">
+            {getGreeting()} {user?.firstName}
+          </h1>
+>>>>>>> Stashed changes
         </div>
         <div className={cn("block lg:!hidden")}>
           <MobileSidebar />
@@ -54,4 +87,4 @@ export default function Header() {
   );
 }
 
-UserNav.displayName = 'Header';
+Header.displayName = "Header";
