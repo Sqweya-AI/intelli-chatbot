@@ -18,7 +18,7 @@ import {
   Card,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
+import Features from "@/components/component/features";
 import Image from "next/image";
 import demoImage from "@/public/Demo.svg";
 import mendiata from "@/public/mendiata.jpeg";
@@ -169,7 +169,9 @@ export function Home() {
             <h2 className="text-3xl font-bold text-center">
               What advantages does our software offer?
             </h2>
-            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+            
+            <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-1">
+              <Features />
               <div>
                 <h3 className="text-xl font-semibold">
                   Manage your customer service efficiently, save time
