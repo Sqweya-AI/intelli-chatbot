@@ -8,17 +8,17 @@ import useAuth from '@/lib/auth/useAuth'; // Update the import path
 import Image from "next/image";
 
 interface User {
-  photoURL: string | null;
-  displayName: string | null;
-  email: string | null;
-  firstName: string | null; // Add the firstName property
-  companyName: string | null; // Add the companyName property
+  email: string;
+  role: string | null;
+  is_email_verified: boolean;
+  company_name: string;
+  username: string;
 }
 
 export default function Header() {
   const { user } = useAuth();
-  const firstName = user ? user.firstName : '';
-  const companyName = user ? user.companyName : '';
+  const userName = user ? user.username : '';
+  const companyName = user ? user.company_name : '';
 
   const getGreeting = () => {
     const currentHour = new Date().getHours();
@@ -36,7 +36,7 @@ export default function Header() {
       <nav className="h-14 flex items-center justify-between px-4">
         <Image alt="Intelli Concierge" className="h-16" src="/Intelli.svg" height={25} width={25} />
         <div>
-          <h1 className="text-xl font-semibold">{getGreeting()} {firstName}</h1>
+          <h1 className="text-xl font-semibold">{getGreeting()} {userName}</h1>
         </div>
         <div className={cn("block lg:!hidden")}>
           <MobileSidebar />
